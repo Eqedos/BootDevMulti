@@ -1,0 +1,12 @@
+/* Import other CSS modules */
+@import './components/popup.css';
+@import './components/buttons.css';
+@import './base/reset.css';
+@import './base/typography.css';
+
+/* Global styles */
+body {
+  width: 200px;
+  font-family: sans-serif;
+  background-color: red;
+}

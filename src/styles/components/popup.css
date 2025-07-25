@@ -1,0 +1,15 @@
+/* Popup-specific styles */
+.popup-container {
+  padding: 16px;
+  min-height: 200px;
+}
+
+.popup-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.popup-content {
+  flex: 1;
+}
