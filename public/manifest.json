@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "BootDevBattle Starter",
+  "version": "0.1.0",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.boot.dev/learn/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
