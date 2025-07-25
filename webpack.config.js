@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
@@ -21,6 +22,9 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [{ from: 'public' }],
+    }),
+    new Dotenv({
+      path: './.env',
     }),
   ],
 };
