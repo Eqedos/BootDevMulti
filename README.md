@@ -1,24 +1,26 @@
-BootDevBattle Starter
+# BootDevBattle Starter
 
 A starter template for the BootDevBattle browser extension.
-Quick Start
 
-1. Install Dependencies
+## Quick Start
 
-npm i
+1.  **Install Dependencies**
 
-2. Run the Development Server
+    ```bash
+    npm i
+    ```
 
-This command builds the extension and watches for file changes.
+2.  **Run the Development Server**
 
-npm run dev
+    This command builds the extension and watches for file changes.
 
-3. Load the Extension in Chrome
+    ```bash
+    npm run dev
+    ```
 
-    Open Chrome and go to chrome://extensions.
+3.  **Load the Extension in Chrome**
 
-    Enable Developer mode.
-
-    Click Load unpacked.
-
-    Select the dist folder from this project.
+    *   Open Chrome and go to `chrome://extensions`.
+    *   Enable "Developer mode".
+    *   Click "Load unpacked".
+    *   Select the `dist` folder from this project.
