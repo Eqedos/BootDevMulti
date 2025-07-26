@@ -1,14 +1,29 @@
 .popup-container {
-  padding: 16px;
-  min-height: 200px;
+  padding: 25px;
+  min-height: 280px;
+  background-color: var(--color-neutral-100);
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .popup-header {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
+  border-bottom: 1px solid var(--color-neutral-300);
+  padding-bottom: 18px;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--color-neutral-900);
+  text-align: center;
 }
 
 .popup-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-neutral-700);
 }

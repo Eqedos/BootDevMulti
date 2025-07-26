@@ -3,58 +3,81 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 300px;
-    gap: 15px;
+    max-width: 380px; /* Slightly wider for better input readability */
+    gap: 18px; /* Increased gap for better spacing */
+    padding: 30px; /* Increased padding */
+    background-color: var(--color-neutral-100);
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Softer shadow */
   }
   
   .form-input {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #1b1f2c;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #1b1f2c;
+    padding: 14px 18px; /* Increased padding */
+    border-radius: 10px; /* More rounded corners */
+    border: 1px solid var(--color-neutral-300);
+    background-color: var(--color-text-light);
+    color: var(--color-neutral-700); /* Use neutral-700 for text */
     font-family: 'ArcuataTrial', sans-serif;
-    font-size: 14px;
+    font-size: 17px; /* Slightly larger font */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-secondary-500);
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15); /* Softer focus shadow */
   }
   
   .form-input::placeholder {
-    color: #1b1f2c;
-    opacity: 0.7;
+    color: var(--color-neutral-500);
+    opacity: 0.8; /* Slightly less opaque placeholder */
   }
   
   .form-button-group {
     display: flex;
-    gap: 10px;
+    gap: 12px; /* Increased gap */
+    margin-top: 15px; /* Increased margin */
   }
   
   .form-button {
     flex-grow: 1;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 14px; /* Increased padding */
+    border-radius: 10px; /* More rounded corners */
     border: none;
-    background-color: #1b1f2c;
-    color: #ffffff;
+    background-color: var(--color-secondary-500);
+    color: var(--color-text-light);
     font-family: 'ArcuataTrial', sans-serif;
-    font-size: 14px;
+    font-size: 17px; /* Slightly larger font */
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.7px; /* Slightly increased letter spacing */
   }
   
   .form-button:hover {
-    background-color: #3c435e;
+    background-color: var(--color-secondary-600);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+  }
+  
+  .form-button:active {
+    transform: translateY(0);
+    box-shadow: none;
   }
   
   .error-message {
-    color: #d93030;
-    font-size: 12px;
+    color: var(--color-error-500);
+    font-size: 15px; /* Slightly larger font */
     text-align: center;
-    min-height: 16px;
+    min-height: 20px; /* Increased min-height */
+    margin-top: 8px; /* Increased margin */
   }
   
   .user-info {
-    font-size: 14px;
+    font-size: 17px; /* Slightly larger font */
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Increased margin */
     word-break: break-all;
-  }
+    color: var(--color-neutral-700); /* Use neutral-700 for text */
+}

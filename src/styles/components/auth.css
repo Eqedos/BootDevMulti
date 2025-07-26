@@ -5,33 +5,44 @@
     justify-content: center;
     gap: 20px;
     padding: 40px 20px;
+    background-color: var(--color-neutral-100);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
   
   .auth-button {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 8px;
-    border: 1px solid #1b1f2c;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #1b1f2c;
+    border: none;
+    background-color: var(--color-primary-500);
+    color: var(--color-text-light);
     font-family: 'ArcuataTrial', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   
   .auth-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--color-primary-600);
+    transform: translateY(-2px);
+  }
+  
+  .auth-button:active {
+    transform: translateY(0);
   }
   
   .auth-button img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
   
   .hidden {
     display: none;
   }
+  

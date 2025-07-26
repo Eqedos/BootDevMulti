@@ -19,14 +19,15 @@ module.exports = {
   module: {
     rules: [
       { test: /\.ts$/, use: 'ts-loader', exclude: /node_modules/ },
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: 'asset/resource' },
+      { test: /\.(woff|woff2|eot|ttf|otf)$/i, type: 'asset/resource' },
     ],
   },
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: 'public' },
-        { from: 'src/styles', to: 'styles' }
+        { from: 'public' }
       ],
     }),
     new Dotenv({

@@ -1,4 +1,5 @@
 import { supabase } from './lib/supabaseClient';
+import './styles/index.css';
 import { User } from '@supabase/supabase-js';
 
 const signedInView = document.getElementById('signed-in-view');

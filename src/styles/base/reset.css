@@ -1,4 +1,24 @@
 /* Base reset styles */
+/* Boot.dev inspired color palette */
+:root {
+  --color-primary-500: #4CAF50; /* Green */
+  --color-primary-600: #43A047;
+  --color-secondary-500: #2196F3; /* Blue */
+  --color-secondary-600: #1976D2;
+  --color-success-500: #4CAF50; /* Green */
+  --color-warning-500: #FFC107; /* Amber */
+  --color-error-500: #F44336; /* Red */
+
+  --color-neutral-100: #F8F9FA; /* Very light grey, almost white, for backgrounds */
+  --color-neutral-300: #E9ECEF; /* Light grey for borders, subtle separators */
+  --color-neutral-500: #ADB5BD; /* Medium grey for secondary text, placeholders */
+  --color-neutral-700: #495057; /* Dark grey for main text */
+  --color-neutral-900: #212529; /* Very dark grey/black for headings, strong text */
+
+  --color-text-light: #FFFFFF;
+  --color-text-dark: var(--color-neutral-700);
+}
+
 * {
   margin: 0;
   padding: 0;
