@@ -58,7 +58,7 @@
   color: var(--color-neutral-600);
 }
 
-/* Room code display styles */
+/* Room code styles */
 .room-code-section {
   margin-top: 20px;
   padding: 15px;
@@ -83,4 +83,12 @@
   color: var(--color-neutral-900);
   letter-spacing: 4px;
   margin: 0;
+}
+
+/* Game styles */
+.problem-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
 }

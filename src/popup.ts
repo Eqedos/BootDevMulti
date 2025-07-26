@@ -116,6 +116,11 @@ coopButton?.addEventListener('click', () => {
   window.location.href = 'coop.html';
 });
 
+const startGameButton = document.getElementById('start-game-btn');
+startGameButton?.addEventListener('click', () => {
+  window.location.href = 'game.html';
+});
+
 const updateUserUI = (user: User | null) => {
   if (user) {
     signedInView?.classList.remove('hidden');

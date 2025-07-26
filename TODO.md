@@ -4,13 +4,14 @@ front end:
 - [x] design co-op screen
 - [x] design versus screen
 
-- [ ] design game screen
+- [x] design game screen
 - [ ] design winner/loser screen (versus mode only)
 - [ ]
 
 functionalities:
 - [x] host vs guest
 - [ ] room joining logic (popup.ts)
+- [ ] problem logic (content.ts, game.html)
 
 backend:
 - [x] authentication
