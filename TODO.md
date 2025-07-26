@@ -1,24 +1,19 @@
 front end:
-- [x] design landing
-	/public/popup.html
-- [ ] design co-op screen
-	/public/coop.html
-- [ ] design versus screen
-	/public/versus.html
-- [ ] design current players screen
-	/public/players.html
-- [ ] design currently in multiplayer screen
-	/public/game.html
-- [ ] design winner/loser screen (versus mode)
-	/public/results.html
+- [x] design sign in/up
+- [x] design mode screen
+- [x] design co-op screen
+- [x] design versus screen
+
+- [ ] design game screen
+- [ ] design winner/loser screen (versus mode only)
 - [ ]
 
 functionalities:
-- [ ] host vs guest
-- [ ]
+- [x] host vs guest
+- [ ] room joining logic (popup.ts)
 
 backend:
-- [ ] authentication
+- [x] authentication
 - [ ]
 
 submission:

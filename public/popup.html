@@ -5,15 +5,17 @@
 </head>
 <body>
   <div id="signed-out-view">
-    <div class="container">
-      <h1 class="title">boot.dev multiplayer</h1>
-      <div class="form-container">
-        <input type="email" id="email-input" class="form-input" placeholder="Email">
-        <input type="password" id="password-input" class="form-input" placeholder="Password">
-        <div id="error-message" class="error-message"></div>
-        <div class="form-button-group">
-          <button id="login-button" class="form-button">Log In</button>
-          <button id="signup-button" class="form-button">Sign Up</button>
+    <div class="popup-container">
+      <div class="container">
+        <h1 class="title">boot.dev multiplayer</h1>
+        <div class="form-container">
+          <input type="email" id="email-input" class="form-input" placeholder="Email">
+          <input type="password" id="password-input" class="form-input" placeholder="Password">
+          <div id="error-message" class="error-message"></div>
+          <div class="form-button-group">
+            <button id="login-button" class="form-button">Log In</button>
+            <button id="signup-button" class="form-button">Sign Up</button>
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +39,14 @@
           <p class="button-caption">coop</p>
         </div>
       </div>
-      <button id="sign-out-button" class="form-button" style="margin-top: 20px; width: 120px;">Sign Out</button>
+      <div class="join-section">
+        <p class="join-title">join a session</p>
+        <div class="join-input-group">
+          <input type="text" id="join-code-input" class="form-input" placeholder="enter code" maxlength="5">
+          <button id="join-button" class="form-button">join</button>
+        </div>
+      </div>
+      <button id="sign-out-button" class="form-button" style="margin-top: 20px; width: 120px;">sign out</button>
     </div>
   </div>
 

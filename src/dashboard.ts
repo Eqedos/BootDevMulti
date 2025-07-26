@@ -1,3 +1,29 @@
+function extractUserAvatar(): string | null {
+  const avatarImg = document.querySelector<HTMLImageElement>('img[alt="user avatar"]');
+  return avatarImg?.src || null;
+}
+
+function extractUserName(): string | null {
+  const nameSelectors = [
+    'button[aria-label*="Profile"]',
+    '[data-testid="user-menu"]',
+    '.user-menu',
+    'nav img[alt="user avatar"]'
+  ];
+  
+  for (const selector of nameSelectors) {
+    const element = document.querySelector(selector);
+    if (element) {
+      const textContent = element.textContent?.trim();
+      if (textContent && textContent !== 'Profile') {
+        return textContent;
+      }
+    }
+  }
+  
+  return 'Player';
+}
+
 function injectActionButtons(): void {
     const courseCards = document.querySelectorAll<HTMLAnchorElement>('div.grid > a.block');
   

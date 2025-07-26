@@ -16,6 +16,62 @@ const signOutButton = document.getElementById('sign-out-button');
 
 const versusButton = document.getElementById('versus-button');
 const coopButton = document.getElementById('coop-button');
+const joinCodeInput = document.getElementById('join-code-input') as HTMLInputElement;
+const joinButton = document.getElementById('join-button');
+
+let currentRoomCode: string = '';
+
+function generateRoomCode(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let result = '';
+  for (let i = 0; i < 5; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+function initializeRoom(): void {
+  currentRoomCode = generateRoomCode();
+  displayRoomCode();
+}
+
+function displayRoomCode(): void {
+  const roomCodeContainer = document.getElementById('room-code-container');
+  if (roomCodeContainer) {
+    roomCodeContainer.innerHTML = `
+      <div class="room-code-section">
+        <p class="room-code-label">share this code:</p>
+        <p class="room-code">${currentRoomCode}</p>
+      </div>
+    `;
+  }
+}
+
+function handleJoinRoom(): void {
+  const code = joinCodeInput?.value.toUpperCase().trim();
+
+// TODO: implement room joining logic 
+  if (!code) {
+    alert('Please enter a room code.');
+    return;
+  }
+  
+  if (code.length !== 5) {
+    alert('Room code must be 5 letters.');
+    return;
+  }
+  
+  if (code === currentRoomCode) {
+    alert('You cannot join your own session.');
+    return;
+  }
+  
+  alert(`Attempting to join room: ${code}`);
+  
+  if (joinCodeInput) {
+    joinCodeInput.value = '';
+  }
+}
 
 const handleAuthAction = async (action: 'signUp' | 'signInWithPassword') => {
   if (!emailInput.value || !passwordInput.value) {
@@ -39,9 +95,26 @@ const handleAuthAction = async (action: 'signUp' | 'signInWithPassword') => {
 loginButton?.addEventListener('click', () => handleAuthAction('signInWithPassword'));
 signupButton?.addEventListener('click', () => handleAuthAction('signUp'));
 signOutButton?.addEventListener('click', () => supabase.auth.signOut());
+joinButton?.addEventListener('click', handleJoinRoom);
 
-versusButton?.addEventListener('click', () => { window.location.href = 'versus.html'; });
-coopButton?.addEventListener('click', () => { window.location.href = 'coop.html'; });
+joinCodeInput?.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    handleJoinRoom();
+  }
+});
+
+joinCodeInput?.addEventListener('input', (e) => {
+  const target = e.target as HTMLInputElement;
+  target.value = target.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 5);
+});
+
+versusButton?.addEventListener('click', () => { 
+  window.location.href = 'versus.html';
+});
+
+coopButton?.addEventListener('click', () => { 
+  window.location.href = 'coop.html';
+});
 
 const updateUserUI = (user: User | null) => {
   if (user) {
@@ -53,6 +126,13 @@ const updateUserUI = (user: User | null) => {
     signedOutView?.classList.remove('hidden');
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  const currentPage = window.location.pathname;
+  if (currentPage.includes('coop.html') || currentPage.includes('versus.html')) {
+    initializeRoom();
+  }
+});
 
 supabase.auth.onAuthStateChange((_event, session) => {
   updateUserUI(session?.user ?? null);
