@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BootDevBattle</title>
+  <title>boot.dev multiplayer</title>
   <link rel="stylesheet" href="styles/index.css">
-  
 </head>
 <body>
-  <h1>BootDevBattle</h1>
-  <p>Ready to build!</p>
-  <button class="btn">CLICK ME</button>
+  <div class="container">
+    <h1 class="title">boot.dev multiplayer</h1>
+    <p class="mode">pick your mode</p>
+    <div class="button-row">
+      <div class="button-container">
+        <button class="mode-button" id="versus-button">
+          <img src="styles/versus-boot.png" alt="versus mode">
+        </button>
+        <p class="button-caption">versus</p>
+      </div>
+      <div class="button-container">
+        <button class="mode-button" id="coop-button">
+          <img src="styles/coop-boot.png" alt="coop mode">
+        </button>
+        <p class="button-caption">coop</p>
+      </div>
+    </div>
+  </div>
   <script src="popup.js"></script>
 </body>
 </html>

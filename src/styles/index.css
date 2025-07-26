@@ -1,12 +1,91 @@
-/* Import other CSS modules */
+@font-face {
+  font-family: 'ArcuataTrial';
+  src: url('../../ArcuataTrial-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import './components/popup.css';
 @import './components/buttons.css';
 @import './base/reset.css';
 @import './base/typography.css';
 
-/* Global styles */
 body {
-  width: 200px;
-  font-family: sans-serif;
-  background-color: red;
+  width: 400px;
+  min-height: 200px;
+  font-family: 'ArcuataTrial', sans-serif;
+  background-color: #909dab;
+  background-image: 
+    linear-gradient(rgba(20, 24, 35, 0.1), rgba(20, 24, 35, 0.1)),
+    url('marble.png');
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #909dab;
+  color: #1b1f2c;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: 'ArcuataTrial', sans-serif;
+  font-size: 20px;
+  color: #1b1f2c;
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+}
+
+.mode {
+  font-family: 'ArcuataTrial', sans-serif;
+  color: #1b1f2c;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  font-size: 14px;
+}
+
+.button-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mode-button {
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.mode-button img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  display: block;
+}
+
+.button-caption {
+  font-family: 'ArcuataTrial', sans-serif;
+  color: #1b1f2c;
+  text-align: center;
+  margin: 8px 0 0 0;
+  font-size: 12px;
 }
