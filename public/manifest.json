@@ -14,7 +14,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.boot.dev/learn/*"],
+      "matches": [
+        "https://www.boot.dev/dashboard",
+        "https://www.boot.dev/lessons/*"
+      ],
       "js": ["content.js"]
     }
   ]
