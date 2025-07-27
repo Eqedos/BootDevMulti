@@ -1,26 +1,38 @@
-# BootDevBattle Starter
+# bootdevbattle 
+meet BDB. the chrome extension that flips your boot.dev session into a live‑fire multiplayer BRAWL.
 
-A starter template for the BootDevBattle browser extension.
+create a room, send the 6 letter code to your competition, shit on your rivals in chat, then start coding! 
 
-## Quick Start
+a collapsible leaderboard tracks your rooms progress in real time.
 
-1.  **Install Dependencies**
+no more lonely grind sessions. 
 
-    ```bash
-    npm i
-    ```
+*who's ready to battle?*
 
-2.  **Run the Development Server**
+demo:  https://youtu.be/qJMlNq1AX4M
 
-    This command builds the extension and watches for file changes.
+## get started
+1. **install the extension**
 
-    ```bash
-    npm run dev
-    ```
+    download the zip from [releases](https://github.com/Eqedos/BootDevMulti/releases)
 
-3.  **Load the Extension in Chrome**
+![download](readme-images/download.png)
 
-    *   Open Chrome and go to `chrome://extensions`.
-    *   Enable "Developer mode".
-    *   Click "Load unpacked".
-    *   Select the `dist` folder from this project.
+2. **in your chrome browser, head to `chrome://extensions`**
+
+    bdb works with chromium browsers
+
+3. **enable developer mode**
+
+4. **click load unpacked**
+
+![developer mode and load unpacked](readme-images/developermode-loadunpacked.png)
+
+5. **select the dist folder from the unzipped package**
+
+![select dist folder](readme-images/dist.png)
+
+![extension loaded](readme-images/extension.png)
+
+6. head to [boot.dev](https://boot.dev) and start the battle!
+
