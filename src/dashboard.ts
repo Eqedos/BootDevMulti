@@ -50,7 +50,6 @@ function injectActionButtons(): void {
     const courseId    = courseUrl.pathname.split('/').filter(Boolean).pop() || null;
 
     if (!card.hasAttribute('data-bdb-logged')) {
-      console.log(`[BDB] Course found -> Title: "${courseTitle}", ID: ${courseId}`);
       card.setAttribute('data-bdb-logged', 'true');
     }
 
@@ -121,9 +120,6 @@ function injectActionButtons(): void {
 }
 
 export function initDashboardFeatures(): void {
-  console.log('[BDB] Dashboard features initializing...');
-  console.log('[BDB] Avatar:', extractUserAvatar());
-  console.log('[BDB] Name:', extractUserName());
 
   const observer = new MutationObserver(() => injectActionButtons());
   observer.observe(document.body, { childList: true, subtree: true });

@@ -298,7 +298,6 @@ function cleanup() {
 
 function dlog(scope: string, ...args: any[]) {
   if (!DEBUG) return;
-  console.log(`[BDB:${scope}]`, ...args);
 }
 function derror(scope: string, ...args: any[]) {
   if (!DEBUG) return;

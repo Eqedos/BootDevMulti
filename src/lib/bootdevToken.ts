@@ -10,7 +10,6 @@ export async function getBootDevToken(): Promise<string | null> {
   const fresh = await waitForPostedToken(4000);
   if (fresh && !isExpired(fresh)) {
     await setInStorage(JWT_KEY, fresh);
-    console.log('[BDB] Boot.dev JWT captured:', mask(fresh));
     return fresh;
   }
 

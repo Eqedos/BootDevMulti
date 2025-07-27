@@ -11,7 +11,6 @@ type Msg =
   | { type: 'JOIN_ROOM'; code: string; name: string };
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('[BDB:bg] installed');
 });
 
 chrome.runtime.onMessage.addListener((msg: Msg, _sender, sendResponse) => {
@@ -60,5 +59,4 @@ chrome.runtime.onMessage.addListener((msg: Msg, _sender, sendResponse) => {
 });
 
 supabase.auth.onAuthStateChange((event, session) => {
-  console.log('[BDB:bg] onAuthStateChange', event, session?.user?.id);
 });

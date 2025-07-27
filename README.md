@@ -36,3 +36,18 @@ demo:  https://youtu.be/qJMlNq1AX4M
 
 6. head to [boot.dev](https://boot.dev) and start the battle!
 
+<details>
+<summary>demo accounts</summary>
+
+**emails:**
+- example@example.com
+- example2@example.com  
+- example3@example.com
+- example4@example.com
+
+**password (copy to reveal):**
+<span style="background-color: black; color: black;">12345</span>
+
+please don't abuse these 😊
+
+</details>
