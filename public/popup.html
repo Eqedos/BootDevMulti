@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
   <title>boot.dev multiplayer</title>
+  <link rel="stylesheet" href="styles/index.css" />
 </head>
 <body>
+  <!-- Signed Out -->
   <div id="signed-out-view">
     <div class="popup-container">
       <div class="container">
         <h1 class="title">boot.dev multiplayer</h1>
         <div class="form-container">
-          <input type="email" id="email-input" class="form-input" placeholder="Email">
-          <input type="password" id="password-input" class="form-input" placeholder="Password">
+          <input type="email" id="email-input" class="form-input" placeholder="Email" />
+          <input type="password" id="password-input" class="form-input" placeholder="Password" />
           <div id="error-message" class="error-message"></div>
           <div class="form-button-group">
             <button id="login-button" class="form-button">Log In</button>
@@ -21,35 +24,33 @@
     </div>
   </div>
 
+  <!-- Signed In -->
   <div id="signed-in-view" class="hidden">
     <div class="container">
       <div id="user-info" class="user-info"></div>
-      <p class="mode">pick your mode</p>
-      <div class="button-row">
-        <div class="button-container">
-          <button class="mode-button" id="versus-button">
-            <img src="styles/versus-boot.png" alt="versus mode">
-          </button>
-          <p class="button-caption">versus</p>
-        </div>
-        <div class="button-container">
-          <button class="mode-button" id="coop-button">
-            <img src="styles/coop-boot.png" alt="coop mode">
-          </button>
-          <p class="button-caption">coop</p>
-        </div>
-      </div>
+
+      <!-- Join Room -->
       <div class="join-section">
         <p class="join-title">join a session</p>
         <div class="join-input-group">
-          <input type="text" id="join-code-input" class="form-input" placeholder="enter code" maxlength="5">
+          <input type="text" id="join-code-input" class="form-input" placeholder="enter code" maxlength="6" />
           <button id="join-button" class="form-button">join</button>
         </div>
       </div>
-      <button id="sign-out-button" class="form-button" style="margin-top: 20px; width: 120px;">sign out</button>
+
+      <!-- My Rooms -->
+      <div class="rooms-section">
+        <p class="join-title">your rooms</p>
+        <div id="my-rooms-list" class="rooms-list"></div>
+      </div>
+
+      <!-- Detail panel -->
+      <div id="room-detail" class="room-detail hidden"></div>
+
+      <button id="sign-out-button" class="form-button signout-btn">sign out</button>
     </div>
   </div>
 
-  <script src="popup.js"></script>
+  <script type="module" src="popup.js"></script>
 </body>
 </html>

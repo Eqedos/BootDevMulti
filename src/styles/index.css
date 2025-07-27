@@ -15,7 +15,7 @@
 body {
   width: 400px;
   min-height: 200px;
-  font-family: 'ArcuataTrial', sans-serif;
+  font-family: sans-serif;
   background-color: var(--color-neutral-100); /* Use the new light grey */
   background-size: cover;
   background-repeat: no-repeat;
@@ -100,3 +100,141 @@ body {
 .hidden {
   display: none;
 }
+
+/* ====== TAGS ====== */
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  margin-left: 4px;
+  font-size: 10px;
+  line-height: 1;
+  border-radius: 4px;
+  background: #666;
+  color: #fff;
+  text-transform: uppercase;
+}
+.tag.pub   { background:#0ea5e9; }   /* sky */
+.tag.lock  { background:#f59e0b; }   /* amber */
+.tag.done  { background:#16a34a; }   /* green */
+
+/* ====== ROOM LIST ====== */
+.rooms-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.room-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fafafa;
+}
+.room-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.room-code { font-family: monospace; font-size: 13px; }
+.room-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  opacity: .7;
+}
+.room-actions { margin-top: 6px; display:flex; gap:6px; flex-wrap:wrap; }
+
+/* ====== DETAIL PANEL ====== */
+.room-detail {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+}
+.room-detail.hidden { display:none; }
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.detail-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.detail-meta {
+  font-size: 11px;
+  opacity: .8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+  margin-bottom: 10px;
+}
+.detail-actions {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+/* ====== MEMBERS TABLE ====== */
+.members-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.members-table th,
+.members-table td {
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.members-table thead {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+/* ====== GENERIC BUTTONS ====== */
+.form-button.xs {
+  padding: 2px 6px;
+  font-size: 10px;
+}
+.form-button.green { background:#16a34a; }
+.form-button.red   { background:#dc2626; }
+.signout-btn { margin-top:20px; width:120px; }
+
+/* ====== LAYOUT UTILS ====== */
+.hidden { display:none; }
+.info-message { font-size: 11px; margin-top: 4px; color: #0ea5e9; }
+.checkbox-line { font-size: 12px; margin-top: 4px; display:flex; gap:4px; align-items:center; }
+
+.chat-box{
+  height:120px;
+  overflow-y:auto;
+  border:1px solid #e5e7eb;
+  border-radius:4px;
+  padding:6px 8px;
+  background:#fff;
+  font-size:12px;
+}
+.chat-line{ margin-bottom:4px; }
+.chat-line.mine .chat-body{ background:#dbeafe; }
+.chat-body{
+  display:inline-block;
+  padding:2px 6px;
+  border-radius:4px;
+  background:#f3f4f6;
+}
+.chat-time{
+  opacity:.5;
+  margin-right:4px;
+  font-size:10px;
+}
+.chat-input-row{
+  margin-top:6px;
+  display:flex;
+  gap:4px;
+}
+.form-button.danger{
+  background:#dc2626;
+}
+

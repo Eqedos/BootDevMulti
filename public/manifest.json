@@ -12,6 +12,12 @@
     "48": "logo.png",
     "128": "logo.png"
   },
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.boot.dev/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -19,6 +25,17 @@
         "https://www.boot.dev/lessons/*"
       ],
       "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "pageHook.js",
+        "*.js",
+        "*.css",
+        "logo.png"
+      ],
+      "matches": ["https://www.boot.dev/*"]
     }
   ]
 }

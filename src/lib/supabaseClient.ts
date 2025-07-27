@@ -1,7 +1,18 @@
-import { createClient } from '@supabase/supabase-js'
-import CONFIG from '../config'
+import { createClient } from '@supabase/supabase-js';
+import CONFIG from '../config';
+import { chromeStorage, localStorageFallback } from './storage';
 
-const supabaseUrl = CONFIG.SUPABASE.URL;
-const supabaseKey = CONFIG.SUPABASE.ANON_KEY;
+const isExt = typeof chrome !== 'undefined' && !!chrome.storage?.local;
 
-export const supabase = createClient(supabaseUrl!, supabaseKey!)
+export const supabase = createClient(
+  CONFIG.SUPABASE.URL!,
+  CONFIG.SUPABASE.ANON_KEY!,
+  {
+    auth: {
+      storage: isExt ? chromeStorage : localStorageFallback,
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: false
+    }
+  }
+);

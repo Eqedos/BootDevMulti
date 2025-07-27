@@ -8,13 +8,16 @@ module.exports = {
   entry: {
     popup: './src/popup.ts',
     content: './src/content.ts',
+    background: './src/background.ts',
+    pageHook: './src/inject/pageHook.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
+    publicPath: '', 
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js']
   },
   module: {
     rules: [
@@ -24,14 +27,12 @@ module.exports = {
       { test: /\.(woff|woff2|eot|ttf|otf)$/i, type: 'asset/resource' },
     ],
   },
+  optimization: {
+    splitChunks: false,
+    runtimeChunk: false,
+  },
   plugins: [
-    new CopyPlugin({
-      patterns: [
-        { from: 'public' }
-      ],
-    }),
-    new Dotenv({
-      path: './.env',
-    }),
+    new CopyPlugin({ patterns: [{ from: 'public' }] }),
+    new Dotenv({ path: './.env' }),
   ],
 };
