@@ -45,8 +45,8 @@ demo:  https://youtu.be/qJMlNq1AX4M
 - example3@example.com
 - example4@example.com
 
-**password (copy to reveal):**
-<span style="background-color: black; color: black;">12345</span>
+**password:**
+12345
 
 please don't abuse these 😊
 
