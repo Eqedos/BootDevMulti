@@ -1,3 +1,4 @@
+// src/popup.ts
 import './styles/index.css';
 import { supabase } from './lib/supabaseClient';
 import type { User } from '@supabase/supabase-js';
@@ -52,6 +53,7 @@ let unsubRoom:   (() => void) | null = null;
 let unsubChat:   (() => void) | null = null;
 
 let chatBoxEl: HTMLElement | null = null;
+let nameMap = new Map<string, string>(); 
 
 const showError    = (m: string) => (errorMessage.textContent = m || '');
 const sanitizeCode = (v: string) => v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
@@ -63,6 +65,7 @@ function setActiveRoomId(id: string | null) {
   if (id) chrome.storage.local.set({ activeRoomId: id });
   else    chrome.storage.local.remove('activeRoomId');
 }
+
 function updateUserUI(user: User | null) {
   currentUser = user;
   if (user) {
@@ -190,6 +193,7 @@ function closeRoomDetail() {
   if (unsubRoom) { unsubRoom(); unsubRoom = null; }
   if (unsubChat) { unsubChat(); unsubChat = null; }
   chatBoxEl = null;
+  nameMap.clear();
 
   roomDetail!.classList.add('hidden');
   roomDetail!.innerHTML = '';
@@ -199,6 +203,8 @@ function renderRoomDetail(room: Room, members: PlayerRow[]) {
   const isAdmin   = currentUser?.id === room.admin_id;
   const canStart  = isAdmin && !room.started_at && !room.finished_at;
   const canFinish = isAdmin && room.started_at && !room.finished_at;
+
+  rebuildNameMap(members);
 
   roomDetail!.innerHTML = `
     <div class="detail-header">
@@ -260,18 +266,27 @@ function renderMembersTable(members: PlayerRow[]) {
   const tbody = roomDetail!.querySelector('#members-tbody') as HTMLTableSectionElement;
   if (!tbody) return;
 
+  rebuildNameMap(members);
+
   const rows = members
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
     .map((m, idx) => `
       <tr>
         <td>${idx + 1}</td>
-        <td>${m.player_id.slice(0, 8)}</td>
+        <td>${nameMap.get(m.player_id)}</td>
         <td>${m.score ?? 0}</td>
         <td>${fmt(m.last_progress_at)}</td>
       </tr>
     `).join('');
 
   tbody.innerHTML = rows || '<tr><td colspan="4" style="opacity:.6;">no members</td></tr>';
+}
+
+function rebuildNameMap(members: PlayerRow[]) {
+  nameMap.clear();
+  members.forEach(m => {
+    nameMap.set(m.player_id, m.display_name || m.player_id.slice(0, 8));
+  });
 }
 
 function updateRoomMeta(r: Room) {
@@ -318,15 +333,21 @@ joinButton?.addEventListener('click', async () => {
     alert('Room code must be 6 chars.');
     return;
   }
+  const name = prompt('Pick a display name for this room:')?.trim();
+  if (!name) {
+    alert('You must provide a name.');
+    return;
+  }
   try {
-    const room = await joinRoomByCode(code);
-    alert(`Joined room ${room.room_code}`);
+    const room = await joinRoomByCode(code, name);
+    alert(`Joined room ${room.room_code} as "${name}"`);
     joinCodeInput.value = '';
     loadRooms();
   } catch (e: any) {
     alert(e.message || 'Failed to join room');
   }
 });
+
 joinCodeInput?.addEventListener('input', e => {
   const t = e.target as HTMLInputElement;
   t.value = sanitizeCode(t.value);
@@ -379,11 +400,12 @@ function appendMsg(m: ChatMessage) {
 
 function renderMsg(m: ChatMessage) {
   const mine = m.sender_id === currentUser?.id;
+  const who  = mine ? 'You' : (nameMap.get(m.sender_id) || m.sender_id.slice(0, 8));
   const time = new Date(m.created_at).toLocaleTimeString();
   return `
     <div class="chat-line ${mine ? 'mine' : ''}">
       <span class="chat-time">${time}</span>
-      <span class="chat-body">${escapeHtml(m.content)}</span>
+      <span class="chat-body"><b>${escapeHtml(who)}:</b> ${escapeHtml(m.content)}</span>
     </div>
   `;
 }

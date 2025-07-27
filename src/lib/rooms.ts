@@ -21,6 +21,7 @@ export type PlayerRow = {
   player_progress: any;
   last_progress_at: string | null;
   score: number;
+  display_name: string | null;
 };
 
 export type MemberWithEmail = PlayerRow & { email?: string | null };
@@ -43,7 +44,8 @@ async function getUserId(): Promise<string> {
 export async function createRoomForCourse(
   courseId: string | null,
   courseName: string | null,
-  isPrivate = true
+  isPrivate = true,
+  displayName?: string
 ): Promise<Room> {
   const uid = await getUserId();
 
@@ -63,31 +65,59 @@ export async function createRoomForCourse(
     player_id: uid,
     battle_room_id: data.id,
     player_progress: {},
+    display_name: displayName ?? null
   });
   if (pErr && pErr.code !== '23505') throw pErr;
 
   return data as Room;
 }
 
-export async function joinRoomByCode(code: string): Promise<Room> {
-  const uid = await getUserId();
 
-  const { data: room, error: rErr } = await supabase
+export async function joinRoomByCode(code: string, displayName: string): Promise<Room> {
+  const uid  = await getUserId();
+  const clean = code.trim().toUpperCase();
+
+  const { data: room, error } = await supabase
     .from('battle_rooms')
     .select('*')
-    .eq('room_code', code)
-    .single();
-  if (rErr) throw rErr;
+    .eq('room_code', clean)
+    .limit(1)
+    .maybeSingle();
+  if (error) throw error;
+  if (!room) throw new Error('Invalid code or room is hidden.');
+  if (room.join_locked || room.finished_at) throw new Error('This room is closed to new players.');
 
-  const { error: pErr } = await supabase.from('battle_players').insert({
-    player_id: uid,
-    battle_room_id: room.id,
-    player_progress: {},
-  });
+  const { error: pErr } = await supabase
+    .from('battle_players')
+    .insert({
+      player_id: uid,
+      battle_room_id: room.id,
+      player_progress: {},
+      display_name: displayName
+    });
   if (pErr && pErr.code !== '23505') throw pErr;
+
+  if (pErr && pErr.code === '23505') {
+    await supabase
+      .from('battle_players')
+      .update({ display_name: displayName })
+      .eq('player_id', uid)
+      .eq('battle_room_id', room.id);
+  }
 
   return room as Room;
 }
+
+export async function updateDisplayName(roomId: string, name: string): Promise<void> {
+  const uid = await getUserId();
+  const { error } = await supabase
+    .from('battle_players')
+    .update({ display_name: name })
+    .eq('player_id', uid)
+    .eq('battle_room_id', roomId);
+  if (error) throw error;
+}
+
 
 export async function getMyRooms(): Promise<Room[]> {
   const uid = await getUserId();
@@ -187,14 +217,16 @@ export async function upsertPlayerProgress(
   return data as PlayerRow;
 }
 
-export async function getRoomMembers(roomId: string): Promise<MemberWithEmail[]> {
+
+export async function getRoomMembers(roomId: string): Promise<PlayerRow[]> {
   const { data, error } = await supabase
     .from('battle_players')
     .select('*')
     .eq('battle_room_id', roomId);
   if (error) throw error;
-  return data as MemberWithEmail[];
+  return data as PlayerRow[];
 }
+
 
 export async function sendChatMessage(roomId: string, content: string): Promise<ChatMessage> {
     const uid = await getUserId(); 

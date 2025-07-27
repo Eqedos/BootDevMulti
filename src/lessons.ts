@@ -12,8 +12,8 @@ let lessonId: string | null = null;
 
 let unsubscribeRoom: (() => void) | null = null;
 
-let navRoot: HTMLDivElement | null = null;          
-let navPanel: HTMLDivElement | null = null;      
+let navRoot: HTMLDivElement | null = null;
+let navPanel: HTMLDivElement | null = null;
 let tableBody: HTMLTableSectionElement | null = null;
 
 let pollTimer: number | null = null;
@@ -36,7 +36,7 @@ export async function initLessonFeatures(): Promise<void> {
 
   (window as any).BDB_forceSync = syncProgress;
 
-  await syncProgress();
+  await syncProgress(); 
 
   if (currentRoomId) {
     await injectNavbarLeaderboard(currentRoomId);
@@ -151,8 +151,8 @@ async function injectNavbarLeaderboard(roomId: string) {
   `;
   document.body.appendChild(navRoot);
 
-  navPanel  = navRoot.querySelector('#bdb-nav-panel')  as HTMLDivElement;
-  tableBody = navRoot.querySelector('tbody')           as HTMLTableSectionElement;
+  navPanel  = navRoot.querySelector('#bdb-nav-panel') as HTMLDivElement;
+  tableBody = navRoot.querySelector('tbody') as HTMLTableSectionElement;
 
   ensureNavbarStyle();
 
@@ -171,7 +171,7 @@ async function injectNavbarLeaderboard(roomId: string) {
 
   unsubscribeRoom = subscribeRoom(
     roomId,
-    () => { },
+    () => { /* meta changes ignored here */ },
     async () => {
       try {
         const m = await getRoomMembers(roomId);
@@ -192,7 +192,7 @@ function renderRows(members: PlayerRow[]) {
     .map((m, i) => `
       <tr>
         <td>${i + 1}</td>
-        <td title="${m.player_id}">${m.player_id.slice(0, 8)}</td>
+        <td title="${m.player_id}">${escapeHtml(m.display_name || m.player_id.slice(0, 8))}</td>
         <td>${m.score ?? 0}</td>
       </tr>
     `)
@@ -209,7 +209,6 @@ function destroyLeaderboard() {
   tableBody = null;
 }
 
-/* ------------ STYLE ------------ */
 function ensureNavbarStyle() {
   if (document.getElementById('bdb-navbar-style')) return;
   const style = document.createElement('style');
@@ -223,20 +222,21 @@ function ensureNavbarStyle() {
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 #bdb-nav .bdb-toggle{
-  background:#0ea5e9;
-  color:#fff;
+  background:#fff !important;
+  color:#000 !important;
   padding:6px 10px;
   border-radius:8px 0 0 8px;
   cursor:pointer;
   font-size:12px;
   box-shadow:0 2px 6px rgba(0,0,0,.2);
+  border:1px solid #ccc;
   user-select:none;
 }
 #bdb-nav .bdb-panel{
   width:260px;
   max-height:70vh;
   overflow:auto;
-  background:#fff;
+  background:#fff !important;
   box-shadow:0 2px 10px rgba(0,0,0,.15);
   border-radius:8px 0 0 8px;
   transform:translateX(100%);
@@ -249,31 +249,30 @@ function ensureNavbarStyle() {
   margin:8px 10px 4px;
   font-size:13px;
   font-weight:600;
+  color:#000 !important;
 }
 #bdb-nav .bdb-table{
   width:100%;
   border-collapse:collapse;
   font-size:12px;
+  color:#000 !important;
 }
 #bdb-nav .bdb-table th,
 #bdb-nav .bdb-table td{
   padding:4px 6px;
   border-bottom:1px solid #eee;
   text-align:left;
-}
-#bdb-nav .bdb-table thead{
-  background:#f3f4f6;
-  position:sticky;
-  top:0;
-}
-#bdb-nav,
-#bdb-nav * {
   color:#000 !important;
 }
-#bdb-nav .bdb-toggle{ color:#000 !important; background:#fff !important; border:1px solid #ccc; }
-#bdb-nav .bdb-panel{ background:#fff !important; }
-#bdb-nav .bdb-table thead{ background:#e5e7eb !important; }
-
+#bdb-nav .bdb-table thead{
+  background:#e5e7eb !important;
+  position:sticky;
+  top:0;
+  color:#000 !important;
+}
+#bdb-nav, #bdb-nav *{
+  color:#000 !important;
+}
 `;
   document.head.appendChild(style);
 }
@@ -315,4 +314,9 @@ function dgroup(label: string) {
 function dendgroup() {
   if (!DEBUG) return;
   console.groupEnd();
+}
+function escapeHtml(s: string) {
+  return s.replace(/[&<>"']/g, c => (
+    {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!
+  ));
 }
