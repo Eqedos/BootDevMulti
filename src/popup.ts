@@ -58,6 +58,10 @@ let nameMap = new Map<string, string>();
 const showError    = (m: string) => (errorMessage.textContent = m || '');
 const sanitizeCode = (v: string) => v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
 const fmt          = (d: string | null) => (d ? new Date(d).toLocaleString() : '—');
+const cleanCourseName = (name: string) => {
+  if (!name) return '—';
+  return name.replace(/^\d+\.\s+/, '');
+};
 const HAS_CHROME   = typeof chrome !== 'undefined' && !!chrome.storage?.local;
 
 function setActiveRoomId(id: string | null) {
@@ -105,7 +109,7 @@ async function loadRooms() {
 function renderRooms(rooms: Room[]) {
   myRoomsList.innerHTML = '';
   if (!rooms.length) {
-    myRoomsList.innerHTML = '<p style="font-size:12px;opacity:.6;">no rooms yet</p>';
+    myRoomsList.innerHTML = '<p style="font-size:12px;opacity:.6;text-align:center;margin-top:12px;">no rooms yet</p>';
     return;
   }
 
@@ -114,15 +118,16 @@ function renderRooms(rooms: Room[]) {
     div.className = 'room-card';
     div.dataset.roomId = r.id;
     div.innerHTML = `
-      <div class="room-line">
-        <span class="room-code">${r.room_code}</span>
-        ${r.is_private ? '<span class="tag">private</span>' : '<span class="tag pub">public</span>'}
-        ${r.join_locked ? '<span class="tag lock">locked</span>' : ''}
-        ${r.finished_at ? '<span class="tag done">finished</span>' : ''}
+      <div class="room-title">
+        <span class="course-name">${cleanCourseName(r.course_name || '')}</span>
+        <div class="room-tags">
+          ${r.finished_at ? '<span class="tag done">🏁</span>' : 
+            r.started_at ? '<span class="tag lock">⚔️</span>' : 
+            '<span class="tag waiting">🔔</span>'}
+        </div>
       </div>
       <div class="room-info">
-        <span>${r.course_name || '—'}</span>
-        <span class="timestamp">${fmt(r.created_at)}</span>
+        <span class="created-label">Created: ${fmt(r.created_at)}</span>
       </div>
       <div class="room-actions">
         <button class="form-button xs" data-action="detail" data-id="${r.id}">view</button>
@@ -208,34 +213,36 @@ function renderRoomDetail(room: Room, members: PlayerRow[]) {
 
   roomDetail!.innerHTML = `
     <div class="detail-header">
-      <button class="form-button xs" id="close-detail">&larr; back</button>
-      <h3>Room ${room.room_code}</h3>
+      <button id="close-detail">&larr;</button>
+      <div class="header-spacer"></div>
+      <span class="room-code-label"><span class="room-text">Room:</span> <span class="room-code-value">${room.room_code}</span></span>
     </div>
 
     <div class="detail-meta">
-      <div><b>Course:</b> <span data-meta="course">${room.course_name || '—'}</span></div>
-      <div><b>Created:</b> <span data-meta="created">${fmt(room.created_at)}</span></div>
-      <div><b>Started:</b> <span data-meta="started">${fmt(room.started_at)}</span></div>
-      <div><b>Finished:</b> <span data-meta="finished">${fmt(room.finished_at)}</span></div>
+      <div class="meta-row"><span class="meta-label">Created:</span> <span class="meta-value" data-meta="created">${fmt(room.created_at)}</span></div>
+      <div class="meta-row"><span class="meta-label">Started:</span> <span class="meta-value" data-meta="started">${fmt(room.started_at)}</span></div>
+      <div class="meta-row"><span class="meta-label">Finished:</span> <span class="meta-value" data-meta="finished">${fmt(room.finished_at)}</span></div>
     </div>
 
     <div class="detail-actions">
       ${canStart  ? `<button class="form-button xs green"  id="start-room">Start</button>`   : ''}
-      ${canFinish ? `<button class="form-button xs red"    id="finish-room">Finish</button>` : ''}
+      ${canFinish ? `<button class="form-button xs green"  id="finish-room">Finish</button>` : ''}
       ${isAdmin   ? `<button class="form-button xs danger" id="delete-room">Delete</button>` : ''}
     </div>
 
-    <h4 style="margin-top:8px;">Leaderboard</h4>
+    <div class="section-divider"></div>
+    <h4 class="leaderboard-title">Leaderboard</h4>
     <table class="members-table">
-      <thead><tr><th>#</th><th>player</th><th>score</th><th>updated</th></tr></thead>
+      <thead><tr><th>Place</th><th>Player</th><th>Score</th></tr></thead>
       <tbody id="members-tbody"></tbody>
     </table>
 
-    <h4 style="margin-top:12px;">Chat</h4>
+    <div class="section-divider"></div>
+    <h4 class="chat-title">Chat</h4>
     <div id="chat-box" class="chat-box"></div>
     <div class="chat-input-row">
-      <input id="chat-input" class="form-input" placeholder="type a message…"/>
-      <button id="chat-send" class="form-button xs">Send</button>
+      <input id="chat-input" class="chat-input" placeholder="type a message…"/>
+      <button id="chat-send" class="form-button xs chat-send-button">Send</button>
     </div>
   `;
 
@@ -246,7 +253,8 @@ function renderRoomDetail(room: Room, members: PlayerRow[]) {
   document.getElementById('finish-room')?.addEventListener('click', async () => {
     try {
       const res = await finishRoom(room.id);
-      alert(`Room finished. Winner: ${res.winnerId?.slice(0,8) || 'none'}`);
+      const winnerName = res.winnerId ? (nameMap.get(res.winnerId) || res.winnerId.slice(0,8)) : 'none';
+      alert(`Room finished. Winner: ${winnerName}`);
     } catch (e:any) { alert(e.message || 'failed'); }
   });
   document.getElementById('delete-room')?.addEventListener('click', async () => {
@@ -275,11 +283,10 @@ function renderMembersTable(members: PlayerRow[]) {
         <td>${idx + 1}</td>
         <td>${nameMap.get(m.player_id)}</td>
         <td>${m.score ?? 0}</td>
-        <td>${fmt(m.last_progress_at)}</td>
       </tr>
     `).join('');
 
-  tbody.innerHTML = rows || '<tr><td colspan="4" style="opacity:.6;">no members</td></tr>';
+  tbody.innerHTML = rows || '<tr><td colspan="3" style="opacity:.6;">no members</td></tr>';
 }
 
 function rebuildNameMap(members: PlayerRow[]) {
@@ -295,7 +302,6 @@ function updateRoomMeta(r: Room) {
     const el = root.querySelector(`[data-meta="${key}"]`);
     if (el) el.textContent = txt;
   };
-  set('course',   r.course_name || '—');
   set('created',  fmt(r.created_at));
   set('started',  fmt(r.started_at));
   set('finished', fmt(r.finished_at));
@@ -402,12 +408,23 @@ function renderMsg(m: ChatMessage) {
   const mine = m.sender_id === currentUser?.id;
   const who  = mine ? 'You' : (nameMap.get(m.sender_id) || m.sender_id.slice(0, 8));
   const time = new Date(m.created_at).toLocaleTimeString();
+  const userColorClass = getUserColorClass(m.sender_id);
   return `
-    <div class="chat-line ${mine ? 'mine' : ''}">
+    <div class="chat-line">
+      <span class="chat-user ${userColorClass}">${escapeHtml(who)}:</span>
+      <span class="chat-message">${escapeHtml(m.content)}</span>
       <span class="chat-time">${time}</span>
-      <span class="chat-body"><b>${escapeHtml(who)}:</b> ${escapeHtml(m.content)}</span>
     </div>
   `;
+}
+
+function getUserColorClass(userId: string): string {
+  const colors = ['user-color-1', 'user-color-2', 'user-color-3', 'user-color-4', 'user-color-5', 'user-color-6'];
+  const hash = userId.split('').reduce((a, b) => {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    return a & a;
+  }, 0);
+  return colors[Math.abs(hash) % colors.length];
 }
 
 function escapeHtml(s: string) {

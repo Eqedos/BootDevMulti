@@ -3,62 +3,61 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 380px; /* Slightly wider for better input readability */
-    gap: 18px; /* Increased gap for better spacing */
-    padding: 30px; /* Increased padding */
+    max-width: 380px; 
+    gap: 18px; 
+    padding: 30px; 
     background-color: var(--color-neutral-100);
-    border-radius: 15px; /* More rounded corners */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    border-radius: 15px; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); 
   }
   
   .form-input {
-    padding: 14px 18px; /* Increased padding */
-    border-radius: 10px; /* More rounded corners */
+    padding: 14px 18px; 
+    border-radius: 10px; 
     border: 1px solid var(--color-neutral-300);
     background-color: var(--color-text-light);
-    color: var(--color-neutral-700); /* Use neutral-700 for text */
+    color: black;
     font-family: 'ArcuataTrial', sans-serif;
-    font-size: 17px; /* Slightly larger font */
+    font-size: 17px; 
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
   
   .form-input:focus {
     outline: none;
     border-color: var(--color-secondary-500);
-    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15); /* Softer focus shadow */
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15); 
   }
   
   .form-input::placeholder {
     color: var(--color-neutral-500);
-    opacity: 0.8; /* Slightly less opaque placeholder */
+    opacity: 0.8; 
   }
   
   .form-button-group {
     display: flex;
-    gap: 12px; /* Increased gap */
-    margin-top: 15px; /* Increased margin */
+    gap: 12px; 
   }
   
   .form-button {
     flex-grow: 1;
-    padding: 14px; /* Increased padding */
-    border-radius: 10px; /* More rounded corners */
+    padding: 14px; 
+    border-radius: 10px; 
     border: none;
     background-color: var(--color-secondary-500);
     color: var(--color-text-light);
     font-family: 'ArcuataTrial', sans-serif;
-    font-size: 17px; /* Slightly larger font */
+    font-size: 17px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.7px; /* Slightly increased letter spacing */
+    letter-spacing: 0.7px; 
   }
   
   .form-button:hover {
     background-color: var(--color-secondary-600);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
   }
   
   .form-button:active {
@@ -68,23 +67,21 @@
   
   .error-message {
     color: var(--color-error-500);
-    font-size: 15px; /* Slightly larger font */
+    font-size: 15px; 
     text-align: center;
-    min-height: 20px; /* Increased min-height */
-    margin-top: 8px; /* Increased margin */
   }
   
   .user-info {
-    font-size: 17px; /* Slightly larger font */
+    font-family: 'ArcuataTrial', sans-serif;
+    font-size: 17px; 
     text-align: center;
-    margin-bottom: 25px; /* Increased margin */
+    margin-bottom: 5px;
     word-break: break-all;
-    color: var(--color-neutral-700); /* Use neutral-700 for text */
+    color: var(--color-neutral-700); 
 }
 
-/* Join session styles */
+
 .join-section {
-  margin-top: 15px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -105,4 +102,28 @@
   align-items: center;
   width: 100%;
   max-width: 280px;
+}
+
+.rooms-section {
+  width: 100%;
+  max-width: none;
+}
+
+#join-button {
+  background-color: #264F30 !important;
+}
+
+#login-button {
+  background-color: #264F30 !important;
+}
+
+#signup-button {
+  background-color: #6b7280 !important;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #3d4450;
+  margin: 20px 0;
 }

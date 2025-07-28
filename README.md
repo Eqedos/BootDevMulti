@@ -1,7 +1,10 @@
-# bootdevbattle 
-meet BDB. the chrome extension that flips your boot.dev session into a live‑fire multiplayer BRAWL.
+<img src="readme-images/boot.dev.battle.logo.png" alt="logo">
+<div align="center">
+the chrome extension that flips your boot.dev session into a live‑fire multiplayer <span style="color: red;">BRAWL</span>
+</div>
 
-create a room, send the 6 letter code to your competition, shit on your rivals in chat, then start coding! 
+## description
+create a room, send the 6 letter code to your competition, shit on your rivals in chat, then start coding!
 
 a collapsible leaderboard tracks your rooms progress in real time.
 
@@ -9,32 +12,44 @@ no more lonely grind sessions.
 
 *who's ready to battle?*
 
-demo:  https://youtu.be/qJMlNq1AX4M
+## demo
+https://youtu.be/qJMlNq1AX4M
 
 ## get started
 1. **install the extension**
 
     download the zip from [releases](https://github.com/Eqedos/BootDevMulti/releases)
 
-![download](readme-images/download.png)
+<img src="readme-images/download.png" alt="download" width="600">
+
 
 2. **in your chrome browser, head to `chrome://extensions`**
 
-    bdb works with chromium browsers
+    *bdb also works with your favorite chromium browsers*
+
 
 3. **enable developer mode**
 
+<img src="readme-images/dev.png" alt="developer mode" width="600">
+
 4. **click load unpacked**
 
-![developer mode and load unpacked](readme-images/developermode-loadunpacked.png)
+<img src="readme-images/load-unpacked.png" alt="load unpacked" width="600">
+
 
 5. **select the dist folder from the unzipped package**
 
-![select dist folder](readme-images/dist.png)
+<img src="readme-images/dist.png" alt="select dist folder" width="600">
 
-![extension loaded](readme-images/extension.png)
+
 
 6. head to [boot.dev](https://boot.dev) and start the battle!
+
+<img src="readme-images/boot.dev.battle.png" alt="boot.dev battle" width="600">
+
+---
+### <span style="color: red;">**note:** a hard refresh (`ctrl-r` or `cmd-r`) will fix 99% of issues encountered.</span>
+
 
 <details>
 <summary>demo accounts</summary>
@@ -51,3 +66,7 @@ demo:  https://youtu.be/qJMlNq1AX4M
 please don't abuse these 😊
 
 </details>
+
+---
+
+created by [parth](https://github.com/Eqedos), [nae](https://github.com/naestech), and [daniel](https://github.com/DanielMcFluffy) during the [boot.dev hackathon](https://blog.boot.dev/news/hackathon-2025/)

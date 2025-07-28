@@ -16,12 +16,12 @@ body {
   width: 400px;
   min-height: 200px;
   font-family: sans-serif;
-  background-color: var(--color-neutral-100); /* Use the new light grey */
+  background-color: var(--color-neutral-100); 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border: none; /* Remove border for a cleaner look */
-  color: var(--color-neutral-700); /* Use neutral-700 for general text */
+  border: none; 
+  color: var(--color-neutral-700); 
   margin: 0;
   padding: 0;
 }
@@ -30,33 +30,32 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 30px; /* Increased padding */
+  justify-content: flex-start;
+  padding: 20px; 
   width: 100%;
-  min-height: 200px;
   box-sizing: border-box;
 }
 
 .title {
   font-family: 'ArcuataTrial', sans-serif;
-  font-size: 28px; /* Larger title */
-  color: var(--color-neutral-900); /* Darker color for title */
+  font-size: 28px; 
+  color: var(--color-neutral-900); 
   text-align: center;
-  margin: 0 0 25px 0; /* Adjusted margin */
+  margin: 0 0 25px 0; 
   font-weight: bold;
 }
 
 .mode {
   font-family: 'ArcuataTrial', sans-serif;
-  color: var(--color-neutral-700); /* Use neutral-700 for mode text */
+  color: var(--color-neutral-700); 
   text-align: center;
-  margin: 15px 0 25px 0; /* Adjusted margin */
-  font-size: 16px; /* Slightly larger font */
+  margin: 15px 0 25px 0; 
+  font-size: 16px; 
 }
 
 .button-row {
   display: flex;
-  gap: 25px; /* Increased gap */
+  gap: 25px; 
   justify-content: center;
 }
 
@@ -69,21 +68,21 @@ body {
 .mode-button {
   background: none;
   border: none;
-  border-radius: 12px; /* Slightly more rounded */
+  border-radius: 12px; 
   padding: 0;
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Add subtle shadow to mode buttons */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mode-button:hover {
-  transform: translateY(-3px); /* More pronounced hover effect */
+  transform: translateY(-3px); 
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .mode-button img {
-  width: 90px; /* Slightly larger images */
+  width: 90px; 
   height: 90px;
   border-radius: 12px;
   display: block;
@@ -91,7 +90,7 @@ body {
 
 .button-caption {
   font-family: 'ArcuataTrial', sans-serif;
-  color: var(--color-neutral-700); /* Use neutral-700 for captions */
+  color: var(--color-neutral-700); 
   text-align: center;
   margin: 10px 0 0 0;
   font-size: 14px;
@@ -113,26 +112,48 @@ body {
   color: #fff;
   text-transform: uppercase;
 }
-.tag.pub   { background:#0ea5e9; }   /* sky */
-.tag.lock  { background:#f59e0b; }   /* amber */
-.tag.done  { background:#16a34a; }   /* green */
+.tag.pub   { background:#0ea5e9; }   
+.tag.lock  { background:transparent; border:none; padding:0; }   
+.tag.done  { background:transparent; border:none; padding:0; }   
+.tag.waiting { background:transparent; border:none; padding:0; }   
 
 /* ====== ROOM LIST ====== */
-.rooms-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-.room-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 8px 10px;
-  background: #fafafa;
+.rooms-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  margin-top: 8px; 
+  width: 100%;
 }
-.room-line {
+.room-card {
+  border: 1px solid #3d4450;
+  border-radius: 10px;
+  padding: 12px;
+  background: #2a2f3a;
+  color: #FFFFFF;
+  width: 100%;
+  box-sizing: border-box;
+}
+.room-title {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-weight: 600;
+  justify-content: space-between;
   margin-bottom: 4px;
 }
-.room-code { font-family: monospace; font-size: 13px; }
+.room-tags {
+  display: flex;
+  gap: 6px;
+}
+.course-name { 
+  font-family: 'ArcuataTrial', sans-serif; 
+  font-size: 14px; 
+  font-weight: 600;
+}
+.created-label {
+  font-family: monospace;
+  font-size: 11px;
+  opacity: .7;
+}
 .room-info {
   display: flex;
   justify-content: space-between;
@@ -145,9 +166,12 @@ body {
 .room-detail {
   margin-top: 12px;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #3d4450;
   border-radius: 10px;
-  background: #fff;
+  background: #2a2f3a;
+  color: #FFFFFF;
+  width: 100%;
+  box-sizing: border-box;
 }
 .room-detail.hidden { display:none; }
 
@@ -156,6 +180,42 @@ body {
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+  justify-content: space-between;
+}
+.header-spacer {
+  flex: 1;
+}
+.room-code-label {
+  font-size: 14px;
+  color: #FFFFFF;
+  margin-left: auto;
+}
+.room-text {
+  font-family: 'ArcuataTrial', sans-serif;
+  font-size: 16px;
+}
+.room-code-value {
+  font-family: monospace;
+  font-size: 8px;
+}
+#close-detail {
+  background: none !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-size: 18px !important;
+  padding: 0 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  min-width: auto !important;
+  transform: translateY(-4px);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+#close-detail:hover {
+  transform: translateY(-6px);
+  opacity: 0.8;
 }
 .detail-header h3 {
   margin: 0;
@@ -163,17 +223,34 @@ body {
   font-weight: 600;
 }
 .detail-meta {
-  font-size: 11px;
-  opacity: .8;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px 10px;
   margin-bottom: 10px;
+}
+.meta-row {
+  display: flex;
+  margin-bottom: 4px;
+}
+.meta-label {
+  font-family: 'ArcuataTrial', sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-right: 8px;
+}
+.meta-value {
+  font-family: monospace;
+  font-size: 8px;
+  color: #FFFFFF;
+  opacity: 0.8;
 }
 .detail-actions {
   display: flex;
   gap: 6px;
   margin-bottom: 10px;
+}
+.leaderboard-title {
+  font-family: 'ArcuataTrial', sans-serif;
+  margin: 8px 0 8px 0;
+  font-size: 16px;
+  color: #FFFFFF;
 }
 
 /* ====== MEMBERS TABLE ====== */
@@ -185,12 +262,22 @@ body {
 .members-table th,
 .members-table td {
   padding: 4px 6px;
-  border: 1px solid #ddd;
+  border: 1px solid #3d4450;
   text-align: left;
+  color: #FFFFFF;
+}
+.members-table th {
+  font-family: 'ArcuataTrial', sans-serif;
+  font-size: 12px;
+}
+.members-table td {
+  font-family: monospace;
+  font-size: 11px;
 }
 .members-table thead {
-  background: #f3f4f6;
+  background: #2a2f3a;
   font-weight: 600;
+  color: #FFFFFF;
 }
 
 /* ====== GENERIC BUTTONS ====== */
@@ -198,9 +285,9 @@ body {
   padding: 2px 6px;
   font-size: 10px;
 }
-.form-button.green { background:#16a34a; }
-.form-button.red   { background:#dc2626; }
-.signout-btn { margin-top:20px; width:120px; }
+.form-button.green { background:#264F30; }
+.form-button.red   { background:#DA3239; }
+.signout-btn { margin-top:20px; width:120px; background:#DA3239 !important; }
 
 /* ====== LAYOUT UTILS ====== */
 .hidden { display:none; }
@@ -210,24 +297,64 @@ body {
 .chat-box{
   height:120px;
   overflow-y:auto;
-  border:1px solid #e5e7eb;
+  border:1px solid #3d4450;
   border-radius:4px;
   padding:6px 8px;
-  background:#fff;
+  background:#2a2f3a;
   font-size:12px;
+  color:#FFFFFF;
 }
-.chat-line{ margin-bottom:4px; }
-.chat-line.mine .chat-body{ background:#dbeafe; }
-.chat-body{
-  display:inline-block;
-  padding:2px 6px;
-  border-radius:4px;
-  background:#f3f4f6;
+.chat-line{ 
+  margin-bottom:4px; 
+  display:flex;
+  align-items:flex-start;
+  gap:6px;
+}
+.chat-user{
+  font-weight:bold;
+  font-size:12px;
+  flex-shrink:0;
+}
+.chat-message{
+  flex:1;
+  font-size:12px;
+  color:#FFFFFF;
 }
 .chat-time{
   opacity:.5;
-  margin-right:4px;
   font-size:10px;
+  flex-shrink:0;
+  margin-left:auto;
+}
+
+.user-color-1 { color:#FF8A8A; }  
+.user-color-2 { color:#60E6DD; }  
+.user-color-3 { color:#6BB6FF; }  
+.user-color-4 { color:#A8E6A1; }  
+.user-color-5 { color:#FFD93D; }  
+.user-color-6 { color:#E6B3E6; }  
+.chat-title {
+  font-family: 'ArcuataTrial', sans-serif;
+  margin: 8px 0 8px 0;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.chat-input {
+  font-family: monospace;
+  padding: 6px 8px;
+  border: 1px solid #3d4450;
+  border-radius: 4px;
+  background: #2a2f3a;
+  color: #FFFFFF;
+  flex: 1;
+  font-size: 12px;
+}
+.chat-input:focus {
+  outline: none;
+  border-color: #5a6470;
+}
+.chat-send-button {
+  background: #C17600 !important;
 }
 .chat-input-row{
   margin-top:6px;
@@ -236,5 +363,12 @@ body {
 }
 .form-button.danger{
   background:#dc2626;
+}
+
+.form-button[data-action="detail"] {
+  background: #264F30 !important;
+}
+.form-button[data-action="copy"] {
+  background: #C17600 !important;
 }
 

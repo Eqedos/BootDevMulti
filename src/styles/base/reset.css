@@ -1,22 +1,20 @@
-/* Base reset styles */
-/* Boot.dev inspired color palette */
 :root {
-  --color-primary-500: #4CAF50; /* Green */
+  --color-primary-500: #4CAF50; 
   --color-primary-600: #43A047;
-  --color-secondary-500: #2196F3; /* Blue */
+  --color-secondary-500: #2196F3; 
   --color-secondary-600: #1976D2;
-  --color-success-500: #4CAF50; /* Green */
-  --color-warning-500: #FFC107; /* Amber */
-  --color-error-500: #F44336; /* Red */
+  --color-success-500: #4CAF50; 
+  --color-warning-500: #FFC107; 
+  --color-error-500: #F44336; 
 
-  --color-neutral-100: #F8F9FA; /* Very light grey, almost white, for backgrounds */
-  --color-neutral-300: #E9ECEF; /* Light grey for borders, subtle separators */
-  --color-neutral-500: #ADB5BD; /* Medium grey for secondary text, placeholders */
-  --color-neutral-700: #495057; /* Dark grey for main text */
-  --color-neutral-900: #212529; /* Very dark grey/black for headings, strong text */
+  --color-neutral-100: #171C28; 
+  --color-neutral-300: #3d4450; 
+  --color-neutral-500: #9CA3AF; 
+  --color-neutral-700: #FFFFFF; 
+  --color-neutral-900: #FFFFFF; 
 
   --color-text-light: #FFFFFF;
-  --color-text-dark: var(--color-neutral-700);
+  --color-text-dark: #FFFFFF;
 }
 
 * {
@@ -28,3 +26,5 @@
 html, body {
   height: 100%;
 }
+
+

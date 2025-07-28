@@ -138,9 +138,8 @@ async function injectNavbarLeaderboard(roomId: string) {
   navRoot = document.createElement('div');
   navRoot.id = 'bdb-nav';
   navRoot.innerHTML = `
-    <div id="bdb-nav-toggle" class="bdb-toggle">≡ Leaderboard</div>
+    <div id="bdb-nav-toggle" class="bdb-toggle">⚔︎ Leaderboard</div>
     <div id="bdb-nav-panel" class="bdb-panel">
-      <h4 class="bdb-title">Leaderboard</h4>
       <table class="bdb-table">
         <thead>
           <tr><th>#</th><th>Player</th><th>Score</th></tr>
@@ -216,62 +215,68 @@ function ensureNavbarStyle() {
   style.textContent = `
 #bdb-nav{
   position:fixed;
-  top:80px;
+  bottom:150px;
   right:0;
   z-index:999999;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-family:'ArcuataTrial',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  display:flex;
+  flex-direction:column;
 }
 #bdb-nav .bdb-toggle{
-  background:#fff !important;
-  color:#000 !important;
+  background:#171C28 !important;
+  color:#fff !important;
   padding:6px 10px;
-  border-radius:8px 0 0 8px;
+  border-radius:8px;
   cursor:pointer;
   font-size:12px;
+  font-family:'ArcuataTrial',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-weight:600;
   box-shadow:0 2px 6px rgba(0,0,0,.2);
-  border:1px solid #ccc;
+  border:none;
   user-select:none;
+  min-width:100px;
 }
 #bdb-nav .bdb-panel{
   width:260px;
   max-height:70vh;
   overflow:auto;
-  background:#fff !important;
+  background:#171C28 !important;
   box-shadow:0 2px 10px rgba(0,0,0,.15);
-  border-radius:8px 0 0 8px;
-  transform:translateX(100%);
-  transition:transform .25s ease;
+  border-radius:0 0 8px 8px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-10px);
+  transition:opacity .25s ease, visibility .25s ease, transform .25s ease;
 }
 #bdb-nav.open .bdb-panel{
-  transform:translateX(0);
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
 }
-#bdb-nav .bdb-title{
-  margin:8px 10px 4px;
-  font-size:13px;
-  font-weight:600;
-  color:#000 !important;
+#bdb-nav.open .bdb-toggle{
+  border-radius:8px 8px 0 0;
 }
 #bdb-nav .bdb-table{
   width:100%;
   border-collapse:collapse;
   font-size:12px;
-  color:#000 !important;
+  color:#fff !important;
 }
 #bdb-nav .bdb-table th,
 #bdb-nav .bdb-table td{
   padding:4px 6px;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #3d4450;
   text-align:left;
-  color:#000 !important;
+  color:#fff !important;
 }
 #bdb-nav .bdb-table thead{
-  background:#e5e7eb !important;
+  background:#2a2f3a !important;
   position:sticky;
   top:0;
-  color:#000 !important;
+  color:#fff !important;
 }
 #bdb-nav, #bdb-nav *{
-  color:#000 !important;
+  color:#fff !important;
 }
 `;
   document.head.appendChild(style);
