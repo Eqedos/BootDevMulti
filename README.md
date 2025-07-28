@@ -1,6 +1,6 @@
 <img src="readme-images/boot.dev.battle.logo.png" alt="logo">
 <div align="center">
-the chrome extension that flips your boot.dev session into a live‑fire multiplayer <span style="color: red;">BRAWL</span>
+the chrome extension that flips your boot.dev session into a live‑fire multiplayer BRAWL
 </div>
 
 ## description
@@ -43,12 +43,12 @@ https://youtu.be/qJMlNq1AX4M
 
 
 
-6. head to [boot.dev](https://boot.dev) and start the battle!
+6. **head to [boot.dev](https://boot.dev) and start the battle!**
 
 <img src="readme-images/boot.dev.battle.png" alt="boot.dev battle" width="600">
 
 ---
-### <span style="color: red;">**note:** a hard refresh (`ctrl-r` or `cmd-r`) will fix 99% of issues encountered.</span>
+### **note:** a hard refresh (`ctrl-r` or `cmd-r`) will fix 99% of issues encountered.
 
 
 <details>
@@ -69,4 +69,4 @@ please don't abuse these 😊
 
 ---
 
-created by [parth](https://github.com/Eqedos), [nae](https://github.com/naestech), and [daniel](https://github.com/DanielMcFluffy) during the [boot.dev hackathon](https://blog.boot.dev/news/hackathon-2025/)
+created by [parth](https://github.com/Eqedos) and [nae](https://github.com/naestech) during the [boot.dev hackathon](https://blog.boot.dev/news/hackathon-2025/)
