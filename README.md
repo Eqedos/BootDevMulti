@@ -2,6 +2,7 @@
 <div align="center">
 the chrome extension that flips your boot.dev session into a live‑fire multiplayer BRAWL
 </div>
+##THIS PROJECT IS NO LONGER MAINTAINED.
 
 ## description
 create a room, send the 6 letter code to your competition, shit on your rivals in chat, then start coding!
